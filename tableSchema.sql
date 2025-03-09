@@ -1,21 +1,21 @@
 -- Original code we used to create our SQL tables when using Microsoft Azure
 -- Code for original test table
 create table AcademicBreachesTwo(
-  BreachId int primary key identity(1,1),
-  FirstName varchar(255),
-  LastName varchar(255),
-  TypeOfBreach varchar(255)
+	BreachId int primary key identity(1,1),
+	FirstName varchar(255),
+	LastName varchar(255),
+	TypeOfBreach varchar(255)
 )
 
 -- Code for student information table
 CREATE TABLE Students (
-    StudentName VARCHAR(255) NOT NULL,
-    EmailAddress VARCHAR(255) UNIQUE NOT NULL,
-    StudentNumber INT IDENTITY(1,1) PRIMARY KEY,
-    Term VARCHAR(50) NOT NULL,
-    ProgramName VARCHAR(255) NOT NULL,
-    CourseName VARCHAR(255) NOT NULL,
-    CourseCode VARCHAR(50) NOT NULL
+	StudentName VARCHAR(255) NOT NULL,
+	EmailAddress VARCHAR(255) UNIQUE NOT NULL,
+	StudentNumber INT IDENTITY(1,1) PRIMARY KEY,
+	Term VARCHAR(50) NOT NULL,
+	ProgramName VARCHAR(255) NOT NULL,
+	CourseName VARCHAR(255) NOT NULL,
+	CourseCode VARCHAR(50) NOT NULL
 );
 
 -- Code for the form table
@@ -38,15 +38,15 @@ CREATE TABLE Forms(
 	SanctionOne VARCHAR(100),
 	DateSanctionTwo VARCHAR(10),
 	SanctionTwo VARCHAR(100),
- 	DateSanctionThree VARCHAR(10),
+	DateSanctionThree VARCHAR(10),
 	SanctionThree VARCHAR(100),
 	DateSanctionFour VARCHAR(10),
 	SanctionFour VARCHAR(100),
 	SupportStaffName VARCHAR(75),
 	SupportStaffDate VARCHAR(10),
-  	Level1_WrittenWarning BIT DEFAULT 0,
- 	Level1_ReducedGrade BIT DEFAULT 0,
-  	Level1_GradeOfZero BIT DEFAULT 0,
+	Level1_WrittenWarning BIT DEFAULT 0,
+	Level1_ReducedGrade BIT DEFAULT 0,
+	Level1_GradeOfZero BIT DEFAULT 0,
 	Level1_MandatoryRemediation BIT DEFAULT 0,
 	Level1_IncreasedSanction BIT DEFAULT 0,
 	Level2_FGrade BIT DEFAULT 0,
