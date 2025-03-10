@@ -1,1 +1,15 @@
+// App OnStart - Allows for setting different roles based on Microsoft email (login email)
+Set(CurrentUser, Office365Users.MyProfile().Mail);
+Set(UserRole, LookUp(UserRolesNew, UserEmail = CurrentUser, Roles.Value));
 
+// Table3 Items (Left Side Bar Items) - Filters items that user can edit based on if its their form on not
+If(
+UserRole = "Student", Filter('FormCombined', EmailAddress.Value = CurrentUser),
+UserRole = "Professor", Filter('FormCombined', ProfessorEmail = CurrentUser),
+UserRole = "Admin", 'FormCombined'
+)
+
+// TextFields DisplayMode - Filters each textfield on whether they can be edited or not based on user role
+1. If(UserRole = "Professor", DisplayMode.Edit, DisplayMode.View)
+2. If(UserRole = "Student", DisplayMode.Edit, DisplayMode.View)
+3. If(UserRole = "Admin", DisplayMode.Edit, DisplayMode.View)
