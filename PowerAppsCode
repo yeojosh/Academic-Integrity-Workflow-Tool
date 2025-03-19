@@ -13,3 +13,6 @@ UserRole = "Admin", 'FormCombined'
 1. If(UserRole = "Professor", DisplayMode.Edit, DisplayMode.View)
 2. If(UserRole = "Student", DisplayMode.Edit, DisplayMode.View)
 3. If(UserRole = "Admin", DisplayMode.Edit, DisplayMode.View)
+
+// Old Submit to Powerflow - Sends an email out with the powerflow whenever the submit button was clicked
+Concurrent(SubmitForm(Form4),If(UserRole = "Professor", EmailStudentTest2.Run(Text(DataCardValue80.Selected.Value),Text(DataCardValue98.Selected.Value))))
