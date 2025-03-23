@@ -18,10 +18,35 @@ UserRole = "Admin", 'FormCombined'
 Concurrent(SubmitForm(Form4),If(UserRole = "Professor", EmailStudentTest2.Run(Text(DataCardValue80.Selected.Value),Text(DataCardValue98.Selected.Value))))
 
 // Submit button validation - Checks to see if fields are blank and if so it will not allow for the submit button to be pressed, also checks per user role
-If(
-    UserRole = "Professor" && (IsBlank(DataCardValue93.Selected) || IsBlank(DataCardValue80.Selected)) || IsBlank(DataCardValue98.Selected) || IsBlank(DataCardValue97.Selected) || IsBlank(DataCardValue83.Selected) || IsBlank(DataCardValue79.Selected) || IsBlank(DataCardValue78.Selected) || IsBlank(Radio1.Selected.Value) || IsBlank(DataCardValue64.Value) || IsBlank(DataCardValue65.Value) || IsBlank(DateValue4.SelectedDate) || 
-    UserRole = "Student" && (IsBlank(DataCardValue72.Value)) || 
-    UserRole = "Admin" && (IsBlank(DateValue5.SelectedDate) || IsBlank(Radio2.Selected) || IsBlank(DataCardValue95.Value) || IsBlank(DataCardValue94.Value) || IsBlank(DataCardValue91.Value) || IsBlank(DateValue6.SelectedDate) || IsBlank(DataCardValue96.Value) || IsBlank(DataCardValue1.Value) || IsBlank(Radio5.Selected) || IsBlank(DataCardValue75.Value)),
+f(
+    (UserRole = "Professor" && 
+        (IsBlank(DataCardValue93.Selected) || 
+        IsBlank(DataCardValue80.Selected) || 
+        IsBlank(DataCardValue98.Selected) || 
+        IsBlank(DataCardValue97.Selected) || 
+        IsBlank(DataCardValue83.Selected) || 
+        IsBlank(DataCardValue79.Selected) || 
+        IsBlank(DataCardValue78.Selected) || 
+        IsBlank(Radio1.Selected.Value) || 
+        IsBlank(DataCardValue64.Value) || 
+        IsBlank(DataCardValue65.Value) || 
+        IsBlank(DateValue4.SelectedDate)
+    ) ||
+    (UserRole = "Student" && 
+        IsBlank(DataCardValue72.Value)
+    ) ||
+    (UserRole = "Admin" && 
+        (IsBlank(DateValue5.SelectedDate) || 
+        IsBlank(Radio2.Selected) || 
+        IsBlank(DataCardValue95.Value) || 
+        IsBlank(DataCardValue94.Value) || 
+        IsBlank(DataCardValue91.Value) || 
+        IsBlank(DateValue6.SelectedDate) || 
+        IsBlank(DataCardValue96.Value) || 
+        IsBlank(DataCardValue1.Value) || 
+        IsBlank(Radio5.Selected) || 
+        IsBlank(DataCardValue75.Value))
+    ),
     DisplayMode.Disabled,
     DisplayMode.Edit
 )
