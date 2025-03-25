@@ -50,3 +50,36 @@ f(
     DisplayMode.Disabled,
     DisplayMode.Edit
 )
+
+// Confirm Submission code
+
+// main submit button
+UpdateContext({ submitMode: true, value: Form4, selectedRecord: Table3.Selected  })
+
+// dialog box 
+If(submitMode, true, false)
+
+// dialog box cancel button
+UpdateContext({ submitMode: false })
+
+// dialog box submit button
+
+SubmitForm(
+    value
+);
+If(
+    IsEmpty(
+        Errors(
+            FormCombined,
+            selectedRecord
+        )
+    ),
+    UpdateContext(
+        {
+            CurrentItem: First(Table()),
+            isItemSelected: false,
+            newMode: false,
+            submitMode: false
+        }
+    )
+);
