@@ -83,3 +83,26 @@ If(
         }
     )
 );
+
+// Code for stages on Submit
+UpdateContext({
+  varDataCard3:
+    If(
+      UserRole = "Professor", "Student Input",
+      UserRole = "Student",   "Admin Input",
+      UserRole = "Admin",     "Complete",
+      "" 
+    )
+});
+
+// Code for stages on Save
+UpdateContext({
+  varDataCard3:
+    If(
+      UserRole = "Professor", "Professor Save",
+      UserRole = "Student",   "Student Save",
+      UserRole = "Admin",     "Admin Save",
+      "" 
+    )
+});
+
