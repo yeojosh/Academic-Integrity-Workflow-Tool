@@ -106,3 +106,51 @@ UpdateContext({
     )
 });
 
+// Code for filters
+If(
+    UserRole = "Student", Filter('FormCombined', EmailAddress.Value = CurrentUser && Stage = "Student Input"),
+    UserRole = "Professor" && To_Do_Checkbox.Checked, Filter('FormCombined', Stage = "Professor Save" && ProfessorEmail = CurrentUser),
+    UserRole = "Professor" && Complete_Checkbox.Checked, Filter('FormCombined', Stage = "Student Input" && ProfessorEmail = CurrentUser),
+    UserRole = "Professor", Filter('FormCombined', ProfessorEmail = CurrentUser),
+    UserRole = "Admin" && To_Do_Checkbox.Checked, Filter('FormCombined', Stage= "Admin Input" ),
+    UserRole = "Admin" && Complete_Checkbox.Checked, Filter('FormCombined', Stage = "Complete"),
+    UserRole = "Admin", 'FormCombined'
+)
+
+// Code for clone
+UpdateContext({
+  varDataCard3:
+    If(
+      UserRole = "Professor", "Professor Save"
+    )
+});
+
+Patch(
+    'FormCombined',
+    Defaults('FormCombined'),
+    {
+        ShortDescriptionOfBreach: DataCardValue64.Value,
+        ProfessorEmail: DataCardValue71.Value,
+        Stage: "Professor Save",
+        NameOfFaculty: DataCardValue65.Value,
+        BreachType: BreachType_DataCard2.Update,
+        CourseName: DataCardValue79.Selected,
+        CourseCode: DataCardValue78.Selected
+    }
+);
+If(
+    IsEmpty(
+        Errors(
+            FormCombined,
+            selectedRecord
+        )
+    ),
+    UpdateContext(
+        {
+            CurrentItem: First(Table()),
+            isItemSelected: false,
+            newMode: false,
+            submitMode: false
+        }
+    )
+);
